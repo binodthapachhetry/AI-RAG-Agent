@@ -8,7 +8,7 @@ Learning repo to build a production-grade RAG/agent system.
 3) `pytest`
 
 ## Conventions
-- Python 3.12+
+- Python 3.13+
 - Ruff for lint + format (`ruff`, `ruff-format`)
 - Tests with `pytest`
 
