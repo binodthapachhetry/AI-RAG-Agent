@@ -11,3 +11,5 @@ Learning repo to build a production-grade RAG/agent system.
 - Python 3.12+
 - Ruff for lint + format (`ruff`, `ruff-format`)
 - Tests with `pytest`
+
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/binodthapachhetry/AI-RAG-Agent/main.svg)](https://results.pre-commit.ci/latest/github/binodthapachhetry/AI-RAG-Agent/main)
