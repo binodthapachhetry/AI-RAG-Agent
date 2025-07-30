@@ -1,0 +1,45 @@
+[project]
+name = "ai-rag-agent"
+version = "0.0.1"
+description = "Learning repo for RAG/agent system"
+readme = "README.md"
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E","F","I","B"]  # pyflakes/pycodestyle/imports/bugbear
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true
+
+[tool.mypy]
+python_version = "3.13"
+ignore_missing_imports = true
+disallow_untyped_defs = false
+check_untyped_defs = false
+warn_unused_ignores = true
+no_implicit_optional = false
+exclude = [
+    "tests/fixtures/.*",
+    "build/.*",
+    "dist/.*",
+]
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.0.1"
+tag_format = "v$version"
+version_files = [
+  "pyproject.toml:version = \""
+]
+update_changelog_on_bump = true
+changelog_file = "CHANGELOG.md"
