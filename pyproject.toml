@@ -2,27 +2,32 @@
 requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools]
-package-dir = {"" = "src"}
-packages = ["ai_rag_agent"]               # exact top-level package name
-
 [project]
 name = "ai-rag-agent"
-version = "0.0.1"
+version = "0.1.0"
 description = "Learning repo for RAG/agent system"
 readme = "README.md"
 requires-python = ">=3.12"
 
+# Tell setuptools you're using a src/ layout and how to find packages
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["ai_rag_agent*"]
+
+# --- tool configs (fine to keep here) ---
 [tool.pytest.ini_options]
 addopts = "-q"
 testpaths = ["tests"]
 
 [tool.ruff]
 line-length = 100
-target-version = "py313"
+target-version = "py312"   # match the runtime to avoid false positives
 
 [tool.ruff.lint]
-select = ["E","F","I","B"]  # pyflakes/pycodestyle/imports/bugbear
+select = ["E","F","I","B"]
 
 [tool.ruff.format]
 quote-style = "double"
@@ -30,24 +35,22 @@ indent-style = "space"
 docstring-code-format = true
 
 [tool.mypy]
-python_version = "3.13"
+python_version = "3.12"    # match the runtime
 ignore_missing_imports = true
 disallow_untyped_defs = false
 check_untyped_defs = false
 warn_unused_ignores = true
 no_implicit_optional = false
 exclude = [
-    "tests/fixtures/.*",
-    "build/.*",
-    "dist/.*",
+  "tests/fixtures/.*",
+  "build/.*",
+  "dist/.*",
 ]
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.0.1"
+version = "0.1.0"
 tag_format = "v$version"
-version_files = [
-  "pyproject.toml:version = \""
-]
+version_files = ["pyproject.toml:version = \""]
 update_changelog_on_bump = true
 changelog_file = "CHANGELOG.md"
