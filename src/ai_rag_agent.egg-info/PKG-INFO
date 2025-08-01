@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: ai-rag-agent
+Version: 0.0.1
+Summary: Learning repo for RAG/agent system
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# ai-rag-agent
+
+Learning repo to build a production-grade RAG/agent system.
+
+## Dev quickstart
+1) Create venv and install tools (`pytest`, `ruff`, `pre-commit`)
+2) `pre-commit install`
+3) `pytest`
+
+## Conventions
+- Python 3.13+
+- Ruff for lint + format (`ruff`, `ruff-format`)
+- Tests with `pytest`
+
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/binodthapachhetry/AI-RAG-Agent/main.svg)](https://results.pre-commit.ci/latest/github/binodthapachhetry/AI-RAG-Agent/main)
