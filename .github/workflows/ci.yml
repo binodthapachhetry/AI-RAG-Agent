@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.12"]  # use 3.12 for widest tool support; 3.13 is fine if setup-python supports it
+        python-version: ["3.12"]
     steps:
       - uses: actions/checkout@v4
 
@@ -28,8 +28,8 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install -e .          # <— add this line
-          pip install pytest ruff
+          pip install -e .
+          pip install pytest ruff mypy   # <-- add mypy here
 
       - name: Lint (ruff)
         run: ruff check .
@@ -43,8 +43,12 @@ jobs:
       - name: Tests
         run: pytest -q
 
-      # ---------- Build image ----------
+      # ---------- Build multi-arch image ----------
 
+      # Enable CPU emulation for cross-arch builds
+      - uses: docker/setup-qemu-action@v3
+
+      # Set up Buildx builder
       - uses: docker/setup-buildx-action@v3
 
       - name: Log in to GHCR
@@ -54,10 +58,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build & (conditionally) push
+      - name: Build & (conditionally) push multi-arch
         uses: docker/build-push-action@v5
         with:
           context: .
+          platforms: linux/amd64,linux/arm64                  # <-- multi-arch
           push: ${{ github.ref == 'refs/heads/main' }}
           tags: |
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
