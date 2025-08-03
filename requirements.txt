@@ -4,3 +4,9 @@ pydantic-settings>=2.10.1
 starlette==0.47.1
 httpx==0.28.1
 mypy==1.17.0
+structlog==25.4.0
+opentelemetry-sdk==1.35.0
+opentelemetry-instrumentation-fastapi==0.56b0
+opentelemetry-exporter-otlp==1.35.0
+prometheus-client==0.22.1
+prometheus-fastapi-instrumentator==7.1.0
