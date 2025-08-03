@@ -10,6 +10,8 @@ env:
 
 jobs:
   build-test:
+    env:
+      OTEL_SDK_DISABLED: "true"
     permissions:
       contents: read
       packages: write

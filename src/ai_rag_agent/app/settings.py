@@ -8,5 +8,8 @@ class Settings(BaseSettings):
     version: str = "0.1.0"
     debug: bool = True
 
+    enable_tracing: bool = False
+    otel_endpoint: str | None = None
+
 
 settings = Settings()

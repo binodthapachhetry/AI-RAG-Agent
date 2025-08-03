@@ -21,6 +21,11 @@ include = ["ai_rag_agent*"]
 [tool.pytest.ini_options]
 addopts = "-q"
 testpaths = ["tests"]
+filterwarnings = [
+  "error::DeprecationWarning:ai_rag_agent",     # treat our deprecations as errors
+  "ignore::DeprecationWarning:aiobreaker",      # silence library deprecation
+  "ignore::DeprecationWarning:opentelemetry.*", # optional: silence OTel deps
+]
 
 [tool.ruff]
 line-length = 100

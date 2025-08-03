@@ -7,6 +7,7 @@ services:
       - "8000:8000"
     environment:
       APP_DEBUG: "true"   # quote to avoid YAML boolean conversion surprises
+      APP_ENABLE_TRACING: "true"
       OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
     depends_on:
       - db
