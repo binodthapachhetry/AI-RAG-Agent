@@ -8,13 +8,18 @@ from .middleware import RequestIDMiddleware
 from .routers import answer as answer_router
 from .routers import echo as echo_router
 from .routers import health as health_router
+from .routers import resilience_demo as resilience_demo_router
 from .settings import settings
 
 
 def create_app() -> FastAPI:
     setup_logging()
     app = FastAPI(title=settings.name, version=settings.version, debug=settings.debug)
+
     setup_tracing(app, service_name=settings.name)
+    # if settings.enable_tracing:
+    #     setup_tracing(app, service_name=settings.name)
+
     setup_metrics(app)
 
     app.add_middleware(RequestIDMiddleware)
@@ -23,5 +28,7 @@ def create_app() -> FastAPI:
     app.include_router(health_router.router, tags=["health"])
     app.include_router(echo_router.router, tags=["echo"])
     app.include_router(answer_router.router, tags=["answer"])
+
+    app.include_router(resilience_demo_router.router)
 
     return app
