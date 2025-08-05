@@ -6,6 +6,7 @@ from ..observability.metrics import setup_metrics
 from ..observability.tracing import setup_tracing
 from .middleware import RequestIDMiddleware
 from .routers import answer as answer_router
+from .routers import deps_health as deps_health_router
 from .routers import echo as echo_router
 from .routers import health as health_router
 from .routers import resilience_demo as resilience_demo_router
@@ -30,5 +31,6 @@ def create_app() -> FastAPI:
     app.include_router(answer_router.router, tags=["answer"])
 
     app.include_router(resilience_demo_router.router)
+    app.include_router(deps_health_router.router)
 
     return app

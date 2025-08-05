@@ -11,5 +11,8 @@ class Settings(BaseSettings):
     enable_tracing: bool = False
     otel_endpoint: str | None = None
 
+    db_dsn: str = "postgresql+asyncpg://rag:rag@localhost:5432/rag"  # async SQLAlchemy DSN
+    redis_url: str = "redis://localhost:6379/0"
+
 
 settings = Settings()

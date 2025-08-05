@@ -9,9 +9,12 @@ services:
       APP_DEBUG: "true"   # quote to avoid YAML boolean conversion surprises
       APP_ENABLE_TRACING: "true"
       OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
+      APP_DB_DSN: postgresql+asyncpg://rag:rag@db:5432/rag
+      APP_REDIS_URL: redis://redis:6379/0
     depends_on:
       - db
       - jaeger
+      - redis
 
   db:
     image: postgres:16
@@ -24,6 +27,10 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    ports: ["6379:6379"]
 
   jaeger:
     image: jaegertracing/all-in-one:1.57
